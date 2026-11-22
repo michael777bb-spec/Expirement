@@ -1,7 +1,16 @@
-# Cloudflare Workers: вся гра + /api/ai (Workers AI) в одному файлі worker.js
+# Cloudflare Workers: вся гра + /api/ai (Workers AI) + мультиплеєр /api/room (Durable Objects) в одному файлі worker.js
 name = "horizon-survival"
 main = "worker.js"
 compatibility_date = "2026-11-01"
 
 [ai]
 binding = "AI"
+
+# Кімнати мультиплеєра (Durable Objects на SQLite — доступні на безкоштовному плані)
+[[durable_objects.bindings]]
+name = "ROOMS"
+class_name = "GameRoom"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["GameRoom"]
